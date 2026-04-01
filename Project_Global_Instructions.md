@@ -12,7 +12,7 @@ You operate using the **APEX Harness** methodology: `Context Map -> Harness Cons
 
 Do not rely on this single file as an encyclopedia. Context is a scarce resource. You must treat the repository's `docs/` directory as the absolute System of Record. Before making architectural decisions, autonomously read and align with the following knowledge base:
 
-* **Active Specs:** `docs/specs/active/` (The current goals and absolute criteria).
+* **Active Specs:** `docs/specs/active/` (The current goals and absolute criteria, strictly split into leaf documents).
 * **Legacy/Completed:** `docs/specs/legacy/` (Historical intent, do not overwrite).
 * **Architecture & Rules:** `docs/design/` (Structural constraints and permitted dependencies).
 * **Tradeoffs & History:** `docs/implementation_objections_and_tradeoffs.md` (Past failures and rewritten strategies).
@@ -63,14 +63,39 @@ When instructed to implement a feature or spec, you MUST execute this pipeline s
 
 ---
 
-## Pillar 4: Zero-Drift Documentation & Garbage Collection
+## Pillar 4: Zero-Drift Documentation & The Content Contract
 
-Code and documentation must never drift. A task is NOT complete until the documentation lifecycle is executed:
+Code and documentation must never drift. A task is NOT complete until the strict documentation lifecycle is executed. 
 
-* **Legacy Archiving:** Move the user's original, pre-implementation specification document to `docs/specs/legacy/` to preserve historical intent.
-* **Hierarchical Spec Generation:** Deconstruct the newly validated plan into fresh, active specifications in `docs/specs/active/`, structured strictly macro-to-micro.
-* **Comparison & Tradeoffs Update:** Update `docs/feature_implementation_comparison.md` (mapping original intent vs. actual implementation) and `docs/implementation_objections_and_tradeoffs.md` (recording why original ideas were unviable and the boundaries of the current solution).
-* **Entropy & Garbage Collection:** Actively scan for and remove "AI slop." Clean up stale documentation, unused imports, or deprecated test harnesses that no longer reflect the real codebase. 
+### 4.1 Anti-Drift Language Policy
+
+* The language of all generated documentation MUST exactly match the language of the user's original specification. If the spec is in Chinese, use Chinese. Do not drift to English just because the codebase/terminal is in English.
+
+### 4.2 N+2 Topology & Strict Routing
+
+* **No Monolithic Files:** Never dump an entire specification into a single file. 
+* **Routing:** Move the original pre-implementation spec to `docs/specs/legacy/`. Deconstruct the validated plan into `docs/specs/active/` using an **N+2 Topology**:
+  * `1` Overview Document (The root hub).
+  * `N` Leaf Documents (One dedicated markdown file per algorithm/subsystem).
+  * `1` Integration & Verification Document.
+
+### 4.3 Mandatory Leaf Document Anatomy
+
+A leaf document cannot be a mere summary. It MUST explicitly contain:
+
+1. **Goals & Boundaries:** What it does and does NOT do.
+2. **Math/Logic:** Core formulas, derivations, or pseudocode.
+3. **Code Mapping:** Explicit pointers to files, classes, and config keys.
+4. **Tradeoffs:** Rejected alternatives and reasoning.
+5. **Verification:** Success criteria and test entry points.
+
+* *Explicit Omission Rule:* If a module is dropped or unviable, you must state: *"Not implemented in the current version."* Vague phrasing is forbidden.
+
+### 4.4 Zero-Drift Sync & Garbage Collection
+
+* **Leaf-First Updates:** When implementation changes, synchronize the corresponding leaf document(s) immediately. Do not only patch the overview.
+* **Tradeoffs Update:** Always update `docs/feature_implementation_comparison.md` and `docs/implementation_objections_and_tradeoffs.md`.
+* **Entropy & Garbage Collection:** Actively scan for and remove "AI slop." Clean up stale docs, unused imports, or deprecated test harnesses.
 
 ---
 
@@ -85,3 +110,4 @@ When facing conflicting requirements, strict adherence to this top-down priority
 5. **Large Systems Integration** (Is it over-engineered?)
 
 ***Mandatory Local-First Rule:** Always use the currently activated local `conda` environment. Do not use `uv` or `venv` unless explicitly requested. Fix dependencies natively.*
+
