@@ -86,15 +86,18 @@ A leaf document cannot be a mere summary. It MUST explicitly contain:
 1. **Goals & Boundaries:** What it does and does NOT do.
 2. **Math/Logic:** Core formulas, derivations, or pseudocode.
 3. **Code Mapping:** Explicit pointers to files, classes, and config keys.
-4. **Tradeoffs:** Rejected alternatives and reasoning.
+4. **Tradeoffs:** Explicit deviations, rejected alternatives, limitations, and implementation rationale. Format must follow Section 4.4.
 5. **Verification:** Success criteria and test entry points.
 
 * *Explicit Omission Rule:* If a module is dropped or unviable, you must state: *"Not implemented in the current version."* Vague phrasing is forbidden.
 
-### 4.4 Zero-Drift Sync & Garbage Collection
+### 4.4 Zero-Drift Sync & Rigid Tradeoff Template
 
-* **Leaf-First Updates:** When implementation changes, synchronize the corresponding leaf document(s) immediately. Do not only patch the overview.
-* **Tradeoffs Update:** Always update `docs/feature_implementation_comparison.md` and `docs/implementation_objections_and_tradeoffs.md`.
+* **Leaf-First Updates:** When implementation changes, synchronize the corresponding leaf document(s) immediately.
+* **Rigid Tradeoff Template:** When updating `docs/implementation_objections_and_tradeoffs.md`, conversational FAQ formats (e.g., "Why didn't we do X?") are strictly forbidden. EVERY recorded deviation MUST follow this exact 3-part markdown template:
+  * **Original Spec/Idea:** [Describe exactly what the user's original spec/idea requested]
+  * **Actual Implementation:** [Describe exactly what was built instead]
+  * **Reasoning:** [State the objective engineering/research reason for the deviation (e.g., framework limitation, memory constraint, logic flaw)]
 * **Entropy & Garbage Collection:** Actively scan for and remove "AI slop." Clean up stale docs, unused imports, or deprecated test harnesses.
 
 ---
@@ -110,4 +113,3 @@ When facing conflicting requirements, strict adherence to this top-down priority
 5. **Large Systems Integration** (Is it over-engineered?)
 
 ***Mandatory Local-First Rule:** Always use the currently activated local `conda` environment. Do not use `uv` or `venv` unless explicitly requested. Fix dependencies natively.*
-
