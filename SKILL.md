@@ -1,6 +1,6 @@
 ---
 name: apex-harness
-description: Use for substantial coding, research, or ML tasks that require explicit risk classification, verification routing, user consultation boundaries, anti-silent-simplification safeguards, or structured documentation outputs such as specs, design docs, implementation matrices, and tradeoff logs. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
+description: Use for substantial coding, research, or ML tasks that require explicit risk classification, verification routing, user consultation boundaries, anti-silent-simplification safeguards, or structured documentation outputs such as specs, design docs, implementation matrices, tradeoff logs, and status handoff docs. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
 ---
 
 # APEX Harness Skill for Codex
@@ -12,7 +12,7 @@ This skill is for:
 - machine learning / deep learning algorithm work
 - research-oriented coding where evaluation semantics matter
 - architecture-level or cross-module changes
-- tasks that need durable documentation, implementation tracking, explicit tradeoff handling, or clean handoff across long-running iterations or separate threads
+- tasks that need durable documentation, implementation tracking, explicit tradeoff handling, or clean handoff across accepted iterations or separate threads
 
 Do **not** use this skill for trivial low-risk edits such as:
 - minor UI text or style changes
@@ -29,7 +29,7 @@ It enforces:
 - documentation-code consistency
 - structured documentation outputs under `docs/`
 - two-level tradeoff handling: local design tradeoffs in leaf docs, project-level deviations in `docs/tradeoffs.md`, and matrix entries that reference stable tradeoff IDs without duplicating them
-- explicit status / handoff documentation for long-running work, multi-thread handoff, or acceptance checkpoints
+- explicit status / handoff documentation for accepted Tier A work and substantial accepted Tier B work, especially for long-running work, multi-thread handoff, or phase boundaries
 
 ## Core operating rules
 
@@ -47,7 +47,7 @@ It enforces:
 3. If the task changes substantial behavior, architecture, evaluation semantics, or research interpretation, follow `references/documentation_topology.md`.
 4. If the task is Tier A or a substantial Tier B task, maintain a spec-to-implementation mapping using `references/matrix_template.md`.
 5. If the implementation materially deviates from the original plan, record the deviation using `references/tradeoff_template.md`.
-6. For long-running work, multi-thread handoff, or acceptance checkpoints, maintain or refresh a current status / handoff document using `references/status_template.md`.
+6. For accepted Tier A iterations and substantial accepted Tier B iterations, especially at phase boundaries or before switching threads, maintain or refresh a current status / handoff document using `references/status_template.md`.
 
 ## Quick routing
 
@@ -57,12 +57,14 @@ Use `references/workflow.md` for:
 - user consultation boundary
 - harness rules
 - completion rules
+- iteration handoff rules
 - environment policy
 
 Use `references/documentation_topology.md` for:
 - repository documentation topology
 - what belongs in `docs/specs/`
 - what belongs in `docs/design/`
+- what belongs in `docs/matrix_*.md`
 - required anchor docs
 - update rules by tier
 
@@ -73,16 +75,17 @@ Use `references/tradeoff_template.md` for:
 - `docs/tradeoffs.md` entry format with stable IDs
 
 Use `references/status_template.md` for:
-- current objective, progress snapshot, blockers, validation status, and next-thread handoff
+- current objective, accepted scope, implementation snapshot, blockers, validation status, next steps, and next-thread handoff
 
 ## Repository assumptions for this skill
 
 Unless the repository clearly defines a different structure, assume:
 - `docs/specs/` = active specifications and leaf docs
 - `docs/specs/legacy/` = superseded specifications
+- `docs/specs/status_*.md` = current-state snapshots and handoff notes for accepted Tier A work and substantial accepted Tier B work
 - `docs/design/` = global architecture, system framework, or network structure docs
+- `docs/matrix_*.md` = spec-to-implementation matrices
 - `docs/tradeoffs.md` = repository-wide approved or unavoidable deviations
-- `docs/specs/status_*.md` = current state, validation snapshot, blockers, and handoff notes for long-running work, multi-thread handoff, or acceptance checkpoints
 
 If the repository already has a stronger convention, follow repository truth.
 

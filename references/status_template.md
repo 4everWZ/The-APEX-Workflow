@@ -1,6 +1,12 @@
 # Status / Handoff Template
 
-Use this for `docs/specs/status_<topic>.md` at phase-end snapshots, acceptance checkpoints, or before handing work to a new thread.
+Use this for `docs/specs/status_<topic>.md` at accepted Tier A checkpoints, substantial accepted Tier B checkpoints, phase-end snapshots, or before handing work to a new thread.
+
+Treat this document as a current-state snapshot:
+- overwrite the main sections as work advances
+- do not turn it into an append-only diary
+- optionally keep a short recent milestone history if it helps continuity
+- archive obsolete full snapshots only when they are no longer the active handoff surface
 
 ## Current Objective
 - What is the current delivery target for this iteration?
@@ -46,3 +52,6 @@ Use this for `docs/specs/status_<topic>.md` at phase-end snapshots, acceptance c
 
 ## Notes for Next Thread
 - Anything the next thread must preserve, revisit, or avoid.
+
+## Optional Recent Accepted Milestones
+- Date / checkpoint — short summary

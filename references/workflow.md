@@ -114,7 +114,7 @@ Follow this flow at the appropriate intensity:
 7. Implement the most defensible version of the change.
 8. Run verification and iterate until criteria are met or a hard boundary is reached.
 9. Synchronize documentation if required by scope.
-10. For long-running work, multi-thread handoff, or acceptance checkpoints, update the status / handoff document at phase boundaries or before switching threads.
+10. For accepted Tier A iterations and substantial accepted Tier B iterations, especially at phase boundaries or before switching threads, update the status / handoff document.
 
 ## 5. Harness Rules
 
@@ -157,14 +157,14 @@ If blocked by a hard boundary such as missing credentials, unavailable hardware,
 
 ## 7. Iteration Handoff
 
-For long-running or multi-thread work:
+For accepted Tier A work and substantial accepted Tier B work:
 - prefer separate threads for materially different workstreams such as research exploration, system integration, bug investigation, or branch exploration
 - use the repository status / handoff document to transfer current state between threads or between major accepted iterations
-- at the end of an accepted iteration, update the current objective, implemented scope, validation snapshot, blockers, next steps, and relevant references
+- at the end of an accepted iteration, update the current objective, accepted scope, implementation snapshot, validation status, blockers, next steps, and relevant references
 
 A new thread should resume from repository docs and the current status / handoff document rather than relying on old conversational context alone.
 
-## 7. Environment Policy
+## 8. Environment Policy
 
 Follow repository-native tooling first.
 
@@ -174,7 +174,7 @@ Rules:
 - For Python, default to the active local conda environment unless the repository clearly uses something else.
 - Do not introduce a new environment manager unless the repository already uses it, the task explicitly requires it, or the current environment is provably insufficient and the change is documented.
 
-## 8. Priority Order
+## 9. Priority Order
 
 When requirements conflict, prioritize:
 

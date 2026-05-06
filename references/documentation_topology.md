@@ -36,11 +36,11 @@ When formal spec evolution is required, maintain a flat fixed-anchor topology:
 - `docs/specs/00_*.md` — overview and top-level decomposition
 - `docs/specs/algo_*.md` — one per major algorithm or research module
 - `docs/specs/dev_*.md` — one per integration or system component
-- `docs/specs/matrix_*.md` — spec-to-implementation matrix
 - `docs/specs/integration_*.md` — end-to-end assembly and validation checklist
-- `docs/specs/status_*.md` — current state, blockers, validation snapshot, and handoff notes for long-running work, multi-thread handoff, or acceptance checkpoints
+- `docs/specs/status_*.md` — current-state snapshots and handoff notes for accepted Tier A work and substantial accepted Tier B work
 - `docs/specs/legacy/` — superseded specifications
 - `docs/design/` — global architecture, system framework, or overall network structure docs
+- `docs/matrix_*.md` — spec-to-implementation matrix
 - `docs/tradeoffs.md` — approved or unavoidable project-level deviations
 
 Move the original pre-implementation spec to `docs/specs/legacy/` when it is superseded by formalized active documentation.
@@ -101,7 +101,7 @@ If a topic appears in both places:
 - reference the corresponding tradeoff entry by stable ID from the leaf doc when useful (for example, `TRD-001`)
 
 ### 4.5 Spec-to-Implementation Matrix
-`matrix_*.md` is mandatory for Tier A and recommended for substantial Tier B work.
+`docs/matrix_*.md` is mandatory for Tier A and recommended for substantial Tier B work.
 
 Purpose:
 - map original intent to current implementation status
@@ -118,9 +118,8 @@ Purpose:
 - known hard boundaries
 - final acceptance status
 
-
 ### 4.7 Status / Handoff
-`status_*.md` is recommended for long-running work, multi-thread handoff, or acceptance checkpoints and should be updated at phase boundaries or before switching threads.
+`status_*.md` is recommended for accepted Tier A iterations and substantial accepted Tier B iterations, especially for long-running work, phase boundaries, or before switching threads.
 
 It should contain:
 - current objective
@@ -131,7 +130,12 @@ It should contain:
 - recommended next steps
 - key references to relevant overview, leaf docs, matrix files, integration docs, and tradeoff IDs
 
-Use this document as the primary handoff surface between threads. Do not overload `AGENTS.md` with changing project state.
+Use this document as the primary handoff surface between threads and between major accepted iterations. Do not overload `AGENTS.md` with changing project state.
+
+Treat `status_*.md` as a **current-state snapshot**, not as an append-only diary:
+- overwrite the main sections as the project advances
+- optionally keep a short recent milestone history if it improves continuity
+- archive obsolete full snapshots only when they are no longer the active handoff surface
 
 ## 5. Omission Rule
 
@@ -146,6 +150,6 @@ When implementation changes materially:
 - update `docs/design/` if the high-level structure changes
 - update the matrix if coverage or implementation status changes
 - update integration docs if validation or assembly changes
-- update status / handoff docs at acceptance checkpoints, before thread switches, or whenever blockers / next steps materially change
+- update status / handoff docs at accepted Tier A checkpoints, substantial accepted Tier B checkpoints, before thread switches, or whenever blockers / next steps materially change
 
 Remove stale docs, dead references, deprecated harnesses, and filler text.

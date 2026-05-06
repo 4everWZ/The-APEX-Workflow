@@ -1,6 +1,6 @@
 # Spec-to-Implementation Matrix Template
 
-Use this for `docs/specs/matrix_<topic>.md`.
+Use this for `docs/matrix_<topic>.md`.
 
 | Requirement ID | Original Intent | Current Status | Implementation Pointer | Verification Pointer | Notes |
 |---|---|---|---|---|---|
