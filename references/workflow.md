@@ -22,6 +22,13 @@ Use when changes affect:
 - moderate refactors
 - local but behavior-changing code
 
+Treat Tier B as substantial when one or more of these are true:
+- it affects three or more files or more than one module boundary
+- it changes config semantics, CLI behavior, user-visible behavior, or documented usage
+- it changes behavior that future work will depend on
+- the user explicitly asks for a handoff
+- it needs a spec-to-implementation matrix to avoid losing track of partial scope
+
 ### Tier C — Lightweight
 Use when changes are low-risk and local:
 - UI text or styling
@@ -47,7 +54,7 @@ Must include:
 - critical review
 - dedicated harness or equally isolated verification path when existing tests are insufficient
 - autonomous verification loop
-- required documentation sync
+- required documentation sync when relevant source-of-truth docs exist or are needed
 - tradeoff logging for material deviation
 
 ### Tier B
@@ -56,7 +63,7 @@ Must include:
 - existing tests first
 - minimal additional targeted verification if coverage is insufficient
 - relevant local checks
-- documentation updates only when behavior, usage, contracts, architecture, evaluation semantics, or non-obvious constraints materially change
+- documentation updates only when relevant docs exist or are needed and behavior, usage, contracts, architecture, evaluation semantics, or non-obvious constraints materially change
 - tradeoff logging only for material deviation
 
 ### Tier C
@@ -71,6 +78,7 @@ Must include:
 - Irrelevant green checks do not count as verification.
 - Verification must cover the changed claim, not merely execute some part of the repository.
 - If outputs cannot be observed locally, verification claims must be narrowed accordingly.
+- Before implementation, state the task tier, success criteria, verification path, and any required documentation artifacts when this skill is active.
 
 ## 3. User Consultation Boundary
 
@@ -114,7 +122,7 @@ Follow this flow at the appropriate intensity:
 7. Implement the most defensible version of the change.
 8. Run verification and iterate until criteria are met or a hard boundary is reached.
 9. Synchronize documentation if required by scope.
-10. For accepted Tier A iterations and substantial accepted Tier B iterations, especially at phase boundaries or before switching threads, update the status / handoff document.
+10. If the user explicitly requests handoff, update the status / handoff document.
 
 ## 5. Harness Rules
 
@@ -146,8 +154,8 @@ A task is complete only when, at the required tier:
 - implementation matches the claimed scope
 - relevant verification has passed, or the failure boundary is explicitly documented
 - behavior-changing claims are supported by observed evidence
-- required documentation updates are complete
-- no known critical contradiction remains between code, tests, documentation, and the implementation matrix
+- required documentation updates, if any, are complete
+- no known critical contradiction remains between code, tests, relevant documentation, and the implementation matrix
 
 If blocked by a hard boundary such as missing credentials, unavailable hardware, missing datasets, external service failure, or unrecoverable environment limits:
 - do not bluff
@@ -155,23 +163,26 @@ If blocked by a hard boundary such as missing credentials, unavailable hardware,
 - state what remains unverified
 - state the blocking boundary precisely
 
-## 7. Iteration Handoff
+## 7. Handoff
 
-For accepted Tier A work and substantial accepted Tier B work:
-- prefer separate threads for materially different workstreams such as research exploration, system integration, bug investigation, or branch exploration
-- use the repository status / handoff document to transfer current state between threads or between major accepted iterations
-- at the end of an accepted iteration, update the current objective, accepted scope, implementation snapshot, validation status, blockers, next steps, and relevant references
+Handoff is user-requested.
 
-A new thread should resume from repository docs and the current status / handoff document rather than relying on old conversational context alone.
+When the user asks for handoff:
+- create or refresh the relevant status / handoff document
+- summarize the current objective, accepted scope, implementation snapshot, validation status, blockers, next steps, and relevant references
+- keep it as a current-state snapshot, not a diary
+
 
 ## 8. Environment Policy
 
 Follow repository-native tooling first.
 
 Rules:
+- Before using any Python interpreter, package manager, environment manager, or dependency-changing command, identify the intended target environment.
 - If the repository clearly standardizes on a toolchain, package manager, or execution path, follow it.
 - Otherwise prefer the currently active local environment.
 - For Python, default to the active local conda environment unless the repository clearly uses something else.
+- Do not install project dependencies into Conda `base`, system Python, global Python, or other shared environments unless the user explicitly asks for that target.
 - Do not introduce a new environment manager unless the repository already uses it, the task explicitly requires it, or the current environment is provably insufficient and the change is documented.
 
 ## 9. Priority Order

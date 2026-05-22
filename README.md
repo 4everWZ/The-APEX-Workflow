@@ -22,7 +22,8 @@ Keep your global `~/.codex/AGENTS.md` short. Example:
 - Ask before making material tradeoffs that change scope, behavior, evaluation semantics, data semantics, or research interpretation.
 - Match verification intensity to task risk.
 - Use repository-native tooling and workflow first.
-- Keep code and documentation consistent.
+- Before using Python or dependency-changing commands, identify the intended target environment; do not install project dependencies into Conda `base`, system Python, global Python, or shared environments unless explicitly requested.
+- Keep existing source-of-truth docs consistent with changed behavior; do not create heavy docs for trivial edits.
 - Add brief high-value comments only where intent, invariants, assumptions, or edge-case rationale would not be obvious from the code and nearby docs. Do not add comments that merely restate what the code literally does.
 - Preserve or improve module boundaries when modifying code. Do not introduce avoidable coupling across files, modules, or layers.
 - Prefer cohesive extensions or small focused refactors over dumping unrelated responsibilities into one file, class, or function, or over growing ad hoc branching, duplication, or flag-driven sprawl.
@@ -38,8 +39,8 @@ Keep your global `~/.codex/AGENTS.md` short. Example:
 - Use `docs/specs/` for active specs and leaf docs.
 - Use `docs/matrix_*.md` for spec-to-implementation matrices.
 - Use `docs/tradeoffs.md` for approved or unavoidable deviations.
-- Use `docs/specs/status_*.md` for current-state snapshots, blockers, validation status, and handoff at accepted checkpoints.
+- Use `docs/specs/status_*.md` for current-state snapshots, blockers, validation status, and handoff when the user explicitly requests handoff.
 
 - Give each entry in `docs/tradeoffs.md` a stable short ID such as `TRD-001` so leaf docs and matrices can reference it.
 - Keep local design tradeoffs inside the relevant `algo_*.md` / `dev_*.md` leaf doc. Reserve `docs/tradeoffs.md` for project-level deviations, approved compromises, and major rejected alternatives.
-- Treat `status_*.md` as a current-state handoff surface, not as an append-only diary. Overwrite the main sections as work advances, keep only a short recent milestone history if useful, and archive obsolete full snapshots only when they are no longer the active handoff document.
+- Treat `status_*.md` as a current-state handoff surface, not as an append-only diary. Create or refresh it only when the user asks for handoff. Overwrite the main sections as work advances, keep only a short recent milestone history if useful, and archive obsolete full snapshots only when they are no longer the active handoff document.

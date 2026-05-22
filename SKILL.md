@@ -1,6 +1,6 @@
 ---
 name: apex-harness
-description: Use for substantial coding, research, or ML tasks that require explicit risk classification, verification routing, user consultation boundaries, anti-silent-simplification safeguards, or structured documentation outputs such as specs, design docs, implementation matrices, tradeoff logs, and status handoff docs. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
+description: Use when a coding, research, ML, or architecture task is substantial enough to need risk-tiered execution, evidence-backed verification, explicit scope/tradeoff decisions, or durable docs. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
 ---
 
 # APEX Harness Skill for Codex
@@ -12,7 +12,7 @@ This skill is for:
 - machine learning / deep learning algorithm work
 - research-oriented coding where evaluation semantics matter
 - architecture-level or cross-module changes
-- tasks that need durable documentation, implementation tracking, explicit tradeoff handling, or clean handoff across accepted iterations or separate threads
+- tasks that need durable documentation, implementation tracking, explicit tradeoff handling, or a handoff document when the user asks for one
 
 Do **not** use this skill for trivial low-risk edits such as:
 - minor UI text or style changes
@@ -26,10 +26,10 @@ It enforces:
 - stronger verification for higher-risk work
 - explicit boundaries for when the user must make decisions
 - prohibition on silent simplification or silent scope narrowing
-- documentation-code consistency
-- structured documentation outputs under `docs/`
+- documentation updates when existing source-of-truth docs would otherwise become wrong or misleading
+- structured documentation outputs under `docs/` when the task actually needs them
 - two-level tradeoff handling: local design tradeoffs in leaf docs, project-level deviations in `docs/tradeoffs.md`, and matrix entries that reference stable tradeoff IDs without duplicating them
-- explicit status / handoff documentation for accepted Tier A work and substantial accepted Tier B work, especially for long-running work, multi-thread handoff, or phase boundaries
+- status / handoff documentation only when the user explicitly asks for handoff
 
 ## Core operating rules
 
@@ -47,7 +47,27 @@ It enforces:
 3. If the task changes substantial behavior, architecture, evaluation semantics, or research interpretation, follow `references/documentation_topology.md`.
 4. If the task is Tier A or a substantial Tier B task, maintain a spec-to-implementation mapping using `references/matrix_template.md`.
 5. If the implementation materially deviates from the original plan, record the deviation using `references/tradeoff_template.md`.
-6. For accepted Tier A iterations and substantial accepted Tier B iterations, especially at phase boundaries or before switching threads, maintain or refresh a current status / handoff document using `references/status_template.md`.
+6. When the user explicitly requests handoff, maintain or refresh a current status / handoff document using `references/status_template.md`.
+
+## Activation output
+
+When this skill is active, state the following before implementation:
+- task tier and why
+- success criteria
+- verification path
+- whether docs, matrix, tradeoff log, or user-requested handoff updates are required
+
+Keep this concise; it is an execution boundary, not a ceremony.
+
+## Red flags
+
+Stop and re-check scope, verification, or user consultation when you notice:
+- "I'll do the simple version first" for a requested feature, algorithm, evaluation, or contract
+- "This probably works" without observable evidence
+- "Docs can be updated later" after a source-of-truth doc became wrong or misleading
+- "The tensor shape / schema / config probably is..." without checking the source of truth
+- "This is small enough to skip classification"
+- creating or refreshing handoff docs without the user asking for handoff
 
 ## Quick routing
 
@@ -57,7 +77,7 @@ Use `references/workflow.md` for:
 - user consultation boundary
 - harness rules
 - completion rules
-- iteration handoff rules
+- handoff rules
 - environment policy
 
 Use `references/documentation_topology.md` for:
@@ -75,14 +95,14 @@ Use `references/tradeoff_template.md` for:
 - `docs/tradeoffs.md` entry format with stable IDs
 
 Use `references/status_template.md` for:
-- current objective, accepted scope, implementation snapshot, blockers, validation status, next steps, and next-thread handoff
+- current objective, accepted scope, implementation snapshot, blockers, validation status, next steps, and user-requested handoff notes
 
 ## Repository assumptions for this skill
 
 Unless the repository clearly defines a different structure, assume:
 - `docs/specs/` = active specifications and leaf docs
 - `docs/specs/legacy/` = superseded specifications
-- `docs/specs/status_*.md` = current-state snapshots and handoff notes for accepted Tier A work and substantial accepted Tier B work
+- `docs/specs/status_*.md` = current-state snapshots and handoff notes when the user explicitly requests handoff
 - `docs/design/` = global architecture, system framework, or network structure docs
 - `docs/matrix_*.md` = spec-to-implementation matrices
 - `docs/tradeoffs.md` = repository-wide approved or unavoidable deviations
@@ -95,4 +115,4 @@ Even when this skill is active:
 - keep diffs proportionate to task scope
 - prefer existing reliable tests over redundant scaffolding
 - ask the user before committing to material research or architecture tradeoffs
-- do not claim completion unless claimed scope, verification, and required documentation are mutually consistent
+- do not claim completion unless claimed scope, verification, and any required documentation are mutually consistent

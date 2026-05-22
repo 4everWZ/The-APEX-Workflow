@@ -1,10 +1,14 @@
 # Documentation Topology
 
-Code and documentation must not silently drift.
+When a source-of-truth document describes changed behavior, keep it aligned. Do not create or update heavy documentation just because a small edit happened.
 
-## 1. When Documentation Updates Are Mandatory
+## 1. When Documentation Updates Are Required
 
-Documentation updates are mandatory when changes affect:
+Documentation updates are required when both are true:
+- a relevant source-of-truth doc, accepted spec, design doc, matrix, README, or handoff document exists or is needed for the task
+- the implementation change would make that document wrong, misleading, incomplete, or stale
+
+Common triggers:
 - architecture
 - behavior
 - usage
@@ -16,7 +20,7 @@ Documentation updates are mandatory when changes affect:
 ## 2. Update Rules by Tier
 
 ### Tier A
-Documentation updates are generally required.
+Documentation updates are usually required when active specs, design docs, evaluation docs, or matrices exist for the changed area.
 
 ### Tier B
 Update docs when:
@@ -37,7 +41,7 @@ When formal spec evolution is required, maintain a flat fixed-anchor topology:
 - `docs/specs/algo_*.md` — one per major algorithm or research module
 - `docs/specs/dev_*.md` — one per integration or system component
 - `docs/specs/integration_*.md` — end-to-end assembly and validation checklist
-- `docs/specs/status_*.md` — current-state snapshots and handoff notes for accepted Tier A work and substantial accepted Tier B work
+- `docs/specs/status_*.md` — current-state snapshots and handoff notes when the user explicitly requests handoff
 - `docs/specs/legacy/` — superseded specifications
 - `docs/design/` — global architecture, system framework, or overall network structure docs
 - `docs/matrix_*.md` — spec-to-implementation matrix
@@ -119,7 +123,9 @@ Purpose:
 - final acceptance status
 
 ### 4.7 Status / Handoff
-`status_*.md` is recommended for accepted Tier A iterations and substantial accepted Tier B iterations, especially for long-running work, phase boundaries, or before switching threads.
+`status_*.md` is used when the user explicitly requests handoff.
+
+Create or refresh the handoff document only when the user asks for handoff.
 
 It should contain:
 - current objective
@@ -130,7 +136,7 @@ It should contain:
 - recommended next steps
 - key references to relevant overview, leaf docs, matrix files, integration docs, and tradeoff IDs
 
-Use this document as the primary handoff surface between threads and between major accepted iterations. Do not overload `AGENTS.md` with changing project state.
+Use this document as the primary handoff surface when the user asks for continuity notes. Do not overload `AGENTS.md` with changing project state.
 
 Treat `status_*.md` as a **current-state snapshot**, not as an append-only diary:
 - overwrite the main sections as the project advances
@@ -143,13 +149,13 @@ If a module is omitted, state exactly:
 
 **Not implemented in the current version.**
 
-## 6. Zero-Drift Synchronization
+## 6. Alignment Check
 
 When implementation changes materially:
-- update affected leaf docs immediately
-- update `docs/design/` if the high-level structure changes
-- update the matrix if coverage or implementation status changes
-- update integration docs if validation or assembly changes
-- update status / handoff docs at accepted Tier A checkpoints, substantial accepted Tier B checkpoints, before thread switches, or whenever blockers / next steps materially change
+- update affected leaf docs if they would otherwise become wrong or misleading
+- update `docs/design/` if it exists and the high-level structure changed
+- update the matrix if it exists and coverage or implementation status changed
+- update integration docs if they exist and validation or assembly changed
+- update status / handoff docs only when the user explicitly requests handoff
 
-Remove stale docs, dead references, deprecated harnesses, and filler text.
+Remove stale docs, dead references, deprecated harnesses, and filler text when they are in the touched documentation path or would mislead future work.

@@ -1,6 +1,8 @@
 # Status / Handoff Template
 
-Use this for `docs/specs/status_<topic>.md` at accepted Tier A checkpoints, substantial accepted Tier B checkpoints, phase-end snapshots, or before handing work to a new thread.
+Use this for `docs/specs/status_<topic>.md` when the user explicitly requests a handoff.
+
+Create or refresh this document only after the user asks for handoff.
 
 Treat this document as a current-state snapshot:
 - overwrite the main sections as work advances
@@ -50,8 +52,8 @@ Treat this document as a current-state snapshot:
 - Tradeoff IDs:
 - Design docs:
 
-## Notes for Next Thread
-- Anything the next thread must preserve, revisit, or avoid.
+## Handoff Notes
+- Anything future work must preserve, revisit, or avoid.
 
 ## Optional Recent Accepted Milestones
 - Date / checkpoint — short summary
