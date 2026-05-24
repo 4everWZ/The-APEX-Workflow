@@ -1,6 +1,6 @@
 ---
 name: apex-harness
-description: Use when a coding, research, ML, or architecture task is substantial enough to need risk-tiered execution, evidence-backed verification, explicit scope/tradeoff decisions, or durable docs. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
+description: Use for substantial coding, refactoring, architecture, research, or ML work that needs disciplined execution, stronger verification, clear user decision points, or structured docs such as specs, design docs, implementation matrices, tradeoff logs, and status/handoff records. Do not use for trivial low-risk local edits such as minor UI text changes, comments, or narrow fixes.
 ---
 
 # APEX Harness Skill for Codex
