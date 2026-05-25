@@ -1,59 +1,33 @@
-# Status / Handoff Template
+# Handoff Template
 
-Use this for `docs/specs/status_<topic>.md` when the user explicitly requests a handoff.
+Use this for `docs/specs/status_<topic>.md` only when the user explicitly requests a handoff.
 
-Create or refresh this document only after the user asks for handoff.
+This file is a current-state handoff summary, not a coverage matrix and not a diary. Keep it short. If a `docs/matrix_*.md` exists, link to it instead of duplicating requirement-level status.
 
-Treat this document as a current-state snapshot:
-- overwrite the main sections as work advances
-- do not turn it into an append-only diary
-- optionally keep a short recent milestone history if it helps continuity
-- archive obsolete full snapshots only when they are no longer the active handoff surface
+Update it by replacing stale content. Do not append chronological entries.
 
-## Current Objective
-- What is the current delivery target for this iteration?
+## Objective
+- Current delivery target and relevant scope boundary.
 
-## Accepted Scope
-### In Scope
-- 
+## State Summary
+- Current position:
+- Requirement coverage:
 
-### Explicitly Out of Scope
-- 
-
-## Current State
-### Implemented
-- 
-
-### Partially Implemented
-- 
-
-### Deferred / Not Implemented
-- 
-
-## Validation Snapshot
+## Verification
 - Verified:
-- Not yet verified:
-- Relevant tests / harnesses / benchmarks / commands:
+- Not verified:
+- Evidence / commands:
 
-## Active Blockers or Open Questions
-- 
+## Blockers / Risks
 - 
 
-## Recommended Next Steps
+## Next Steps
 1. 
 2. 
 3. 
 
-## Key References
-- Overview:
-- Relevant leaf docs:
+## References
 - Matrix:
-- Integration:
-- Tradeoff IDs:
-- Design docs:
-
-## Handoff Notes
-- Anything future work must preserve, revisit, or avoid.
-
-## Optional Recent Accepted Milestones
-- Date / checkpoint — short summary
+- Specs / design:
+- Tradeoffs:
+- Other:

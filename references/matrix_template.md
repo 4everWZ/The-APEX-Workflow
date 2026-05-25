@@ -23,5 +23,6 @@ Use this for `docs/matrix_<topic>.md`.
 ## Rules
 
 - This matrix is a coverage document, not a tradeoff log.
+- This matrix is the requirement-level status source of truth. Handoff docs should link to it instead of duplicating rows.
 - If implementation status differs from the original spec because of a project-level deviation, reference the relevant entry in `docs/tradeoffs.md` by stable tradeoff ID in **Notes**.
 - Do not duplicate full tradeoff narratives here.

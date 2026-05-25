@@ -169,8 +169,9 @@ Handoff is user-requested.
 
 When the user asks for handoff:
 - create or refresh the relevant status / handoff document
-- summarize the current objective, accepted scope, implementation snapshot, validation status, blockers, next steps, and relevant references
-- keep it as a current-state snapshot, not a diary
+- summarize the current objective, high-level state, verification summary, blockers / risks, next steps, and relevant references
+- keep it as a current-state snapshot, not a diary or requirement-level matrix
+- link to the matrix when requirement-level implementation or verification status exists
 
 
 ## 8. Environment Policy

@@ -95,7 +95,7 @@ Use `references/tradeoff_template.md` for:
 - `docs/tradeoffs.md` entry format with stable IDs
 
 Use `references/status_template.md` for:
-- current objective, accepted scope, implementation snapshot, blockers, validation status, next steps, and user-requested handoff notes
+- short user-requested handoff summaries: objective, high-level state, verification summary, blockers / risks, next steps, and references
 
 ## Repository assumptions for this skill
 

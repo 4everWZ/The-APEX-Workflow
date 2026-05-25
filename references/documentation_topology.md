@@ -111,6 +111,7 @@ Purpose:
 - map original intent to current implementation status
 - show what exists, what is partial, what is deferred, and how each item is verified
 - reference project-level deviations by tradeoff ID instead of duplicating long explanations
+- serve as the requirement-level coverage source of truth
 
 ### 4.6 Integration
 `integration_*.md` must contain:
@@ -128,20 +129,19 @@ Purpose:
 Create or refresh the handoff document only when the user asks for handoff.
 
 It should contain:
-- current objective
-- accepted in-scope / out-of-scope boundary for the current iteration
-- current implementation state
-- validation snapshot
-- active blockers or unresolved assumptions
-- recommended next steps
-- key references to relevant overview, leaf docs, matrix files, integration docs, and tradeoff IDs
+- objective and scope boundary
+- high-level current state
+- verification summary
+- blockers / risks
+- next steps
+- references
 
 Use this document as the primary handoff surface when the user asks for continuity notes. Do not overload `AGENTS.md` with changing project state.
 
-Treat `status_*.md` as a **current-state snapshot**, not as an append-only diary:
-- overwrite the main sections as the project advances
-- optionally keep a short recent milestone history if it improves continuity
-- archive obsolete full snapshots only when they are no longer the active handoff surface
+Treat `status_*.md` as a **current-state snapshot**, not as an append-only diary or coverage matrix:
+- overwrite the main sections as work advances
+- link to `docs/matrix_*.md` when requirement-level status exists
+- do not duplicate matrix rows, implementation pointers, or full verification pointers
 
 ## 5. Omission Rule
 
